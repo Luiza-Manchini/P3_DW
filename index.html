@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Quiz - Introdução à Programação</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-pattern">
+<header class="hero-header text-white py-4 mb-4">
+    <div class="container header-content">
+        <div class="d-flex align-items-center gap-3 brand-block">
+            <img src="LOGO.png" class="hero-logo" alt="Logotipo do quiz de Introdução à Programação">
+            <div>
+                <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="badge bg-light text-primary-emphasis rounded-pill fw-semibold">Prova III</span>
+                    <span class="eyebrow">Introdução à Programação</span>
+                </div>
+                <h1 class="h3 mb-0">Quiz interativo</h1>
+            </div>
+        </div>
+        <div class="hero-score d-none d-md-flex align-items-center gap-2">
+            <span class="score-dot"></span>
+            <span class="small opacity-75">5 questões • 10 pontos</span>
+        </div>
+    </div>
+</header>
+
+<main class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <section class="quiz-container shadow-soft p-4 p-md-5">
+                <div class="d-flex align-items-start justify-content-between flex-wrap gap-3 mb-3">
+                    <div>
+                        <p class="eyebrow text-uppercase text-primary mb-1">Lógica e algoritmos</p>
+                        <h2 class="h4 mb-1">Responda as 5 questões abaixo</h2>
+                        <p class="text-muted mb-0">Cada acerto vale 2 pontos. Fique de olho no progresso.</p>
+                    </div>
+                    <div class="pill-info">
+                        <span>Pergunta <span id="current-question">1</span>/5</span>
+                    </div>
+                </div>
+
+                <div class="progress-wrap mb-4">
+                    <div class="progress" role="progressbar" aria-label="Progresso do quiz">
+                        <div class="progress-bar" id="quiz-progress"></div>
+                    </div>
+                </div>
+
+                <form id="quiz-form">
+                    <ol class="ps-3">
+                        <li class="question-item mb-4 p-3 p-md-4 rounded-4">
+                            <h3 class="h6 mb-2">1) Em programação, o que é uma variável?</h3>
+                            <fieldset class="border rounded-3 p-3 p-md-3">
+                                <legend class="fs-6 fw-semibold">Escolha uma alternativa:</legend>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1a" value="a">
+                                    <label class="form-check-label option-label" for="q1a">Um erro que interrompe a execução do programa</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1b" value="b">
+                                    <label class="form-check-label option-label" for="q1b">Um valor fixo que nunca pode ser alterado</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1c" value="c" data-correct="true">
+                                    <label class="form-check-label option-label" for="q1c">Um espaço na memória usado para armazenar valores</label>
+                                </div>
+
+                                <div class="form-check mb-0">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1d" value="d">
+                                    <label class="form-check-label option-label" for="q1d">Um comando usado para repetir instruções</label>
+                                </div>
+                            </fieldset>
+                        </li>
+
+                        <li class="question-item mb-4 p-3 p-md-4 rounded-4">
+                            <h3 class="h6 mb-2">2) O que é um algoritmo?</h3>
+                            <fieldset class="border rounded-3 p-3 p-md-3">
+                                <legend class="fs-6 fw-semibold">Escolha uma alternativa:</legend>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2a" value="a">
+                                    <label class="form-check-label option-label" for="q2a">Um tipo de computador</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2b" value="b" data-correct="true">
+                                    <label class="form-check-label option-label" for="q2b">Uma sequência de passos para resolver um problema</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2c" value="c">
+                                    <label class="form-check-label option-label" for="q2c">Um erro lógico em um programa</label>
+                                </div>
+
+                                <div class="form-check mb-0">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2d" value="d">
+                                    <label class="form-check-label option-label" for="q2d">Um tipo especial de variável</label>
+                                </div>
+                            </fieldset>
+                        </li>
+
+                        <li class="question-item mb-4 p-3 p-md-4 rounded-4">
+                            <h3 class="h6 mb-2">3) Observe o trecho em pseudocódigo:<br>
+                                <code>
+                                    se nota &gt;= 6 entao<br>
+                                    &nbsp;&nbsp;escreva "Aprovado"<br>
+                                    senao<br>
+                                    &nbsp;&nbsp;escreva "Reprovado"<br>
+                                    fim-se
+                                </code><br>
+                                Que tipo de estrutura está sendo usada?
+                            </h3>
+                            <fieldset class="border rounded-3 p-3 p-md-3">
+                                <legend class="fs-6 fw-semibold">Escolha uma alternativa:</legend>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3a" value="a">
+                                    <label class="form-check-label option-label" for="q3a">Estrutura de repetição</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3b" value="b" data-correct="true">
+                                    <label class="form-check-label option-label" for="q3b">Estrutura de decisão (condicional)</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3c" value="c">
+                                    <label class="form-check-label option-label" for="q3c">Estrutura de dados</label>
+                                </div>
+
+                                <div class="form-check mb-0">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3d" value="d">
+                                    <label class="form-check-label option-label" for="q3d">Estrutura de entrada e saída</label>
+                                </div>
+                            </fieldset>
+                        </li>
+
+                        <li class="question-item mb-4 p-3 p-md-4 rounded-4">
+                            <h3 class="h6 mb-2">4) Qual das opções representa uma estrutura de repetição (laço)?</h3>
+                            <fieldset class="border rounded-3 p-3 p-md-3">
+                                <legend class="fs-6 fw-semibold">Escolha uma alternativa:</legend>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q4" id="q4a" value="a">
+                                    <label class="form-check-label option-label" for="q4a">se (idade &gt;= 18) então ...</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q4" id="q4b" value="b">
+                                    <label class="form-check-label option-label" for="q4b">início ... fim</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q4" id="q4c" value="c" data-correct="true">
+                                    <label class="form-check-label option-label" for="q4c">enquanto (contador &lt; 10) faça ...</label>
+                                </div>
+
+                                <div class="form-check mb-0">
+                                    <input class="form-check-input" type="radio" name="q4" id="q4d" value="d">
+                                    <label class="form-check-label option-label" for="q4d">leia (nome)</label>
+                                </div>
+                            </fieldset>
+                        </li>
+
+                        <li class="question-item mb-3 p-3 p-md-4 rounded-4">
+                            <h3 class="h6 mb-2">5) Em qual situação é mais adequado usar um laço de repetição?</h3>
+                            <fieldset class="border rounded-3 p-3 p-md-3">
+                                <legend class="fs-6 fw-semibold">Escolha uma alternativa:</legend>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q5" id="q5a" value="a">
+                                    <label class="form-check-label option-label" for="q5a">Para comparar dois valores apenas uma vez</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q5" id="q5b" value="b" data-correct="true">
+                                    <label class="form-check-label option-label" for="q5b">Para executar uma ação várias vezes enquanto uma condição for verdadeira</label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="q5" id="q5c" value="c">
+                                    <label class="form-check-label option-label" for="q5c">Para declarar uma variável nova</label>
+                                </div>
+
+                                <div class="form-check mb-0">
+                                    <input class="form-check-input" type="radio" name="q5" id="q5d" value="d">
+                                    <label class="form-check-label option-label" for="q5d">Para encerrar imediatamente o programa</label>
+                                </div>
+                            </fieldset>
+                        </li>
+                    </ol>
+
+                    <button type="button" id="btn-verificar" class="btn btn-gradient mt-2" title="Clique para ir para a próxima questão ou ver o resultado">
+                        Próxima questão
+                    </button>
+                </form>
+
+                <section id="result-section" class="result-section mt-4">
+                    <div class="result-card">
+                        <h2 class="h5 mb-2">Seu resultado</h2>
+                        <div id="result-alert" class="alert d-none mb-3" role="alert"></div>
+                        <div class="result-bar-bg">
+                            <div class="result-bar-fill" id="result-bar-fill"></div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+</main>
+
+<footer class="text-center py-3 border-0 text-muted">
+    <p class="mb-0 small">Introdução à Programação • Quiz de exemplo</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
